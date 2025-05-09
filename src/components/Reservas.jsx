@@ -28,6 +28,7 @@ function Reservas() {
     cantidadPersonas: "",
     fecha: dayjs(),
     diaEspecial: false,
+    cumpleanos: false,
   });
 
   const [openSuccess, setOpenSuccess] = useState(false);
@@ -64,6 +65,7 @@ function Reservas() {
         cantidadPersonas: formData.cantidadPersonas,
         fecha: dayjs(formData.fecha).format("YYYY-MM-DDTHH:mm:ss"),
         diaEspecial: formData.diaEspecial,
+        cumpleanos: formData.cumpleanos,
       };
 
       const response = await crearReserva(dataParaEnviar);
@@ -181,6 +183,20 @@ function Reservas() {
               type="checkbox"
               name="diaEspecial"
               checked={formData.diaEspecial}
+              onChange={handleChange}
+              style={{ marginLeft: "10px" }}
+            />
+          </label>
+
+          <br />
+          <br />
+
+          <label>
+            ¿Está de Cumpleaños?
+            <input
+              type="checkbox"
+              name="cumpleanos"
+              checked={formData.cumpleanos}
               onChange={handleChange}
               style={{ marginLeft: "10px" }}
             />
