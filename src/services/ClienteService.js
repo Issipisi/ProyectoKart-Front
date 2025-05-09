@@ -1,11 +1,11 @@
-import http from '../../http-common';
+import http from "../../http-common";
 
 export const listarClientes = async () => {
-  const response = await http.get('/clientes');
+  const response = await http.get("/clientes");
   return response.data;
 };
 
 export const crearCliente = async (clienteData) => {
-  const response = await http.get('/clientes', clienteData);
+  const response = await http.post("/clientes", clienteData);
   return response.data;
 };

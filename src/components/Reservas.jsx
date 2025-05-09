@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { listarReservas, crearReserva, enviarComprobanteReserva, eliminarReserva } from "../services/ReservaService";
+import {
+  listarReservas,
+  crearReserva,
+  enviarComprobanteReserva,
+  eliminarReserva,
+} from "../services/ReservaService";
 import ReservasTable from "./ReservasTable";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
-import { TextField, Button, Box, Snackbar, Alert, Paper, Typography } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  Snackbar,
+  Alert,
+  Paper,
+  Typography,
+} from "@mui/material";
 
 function Reservas() {
   const [reservas, setReservas] = useState([]);
@@ -86,7 +99,9 @@ function Reservas() {
   };
 
   const handleEliminarReserva = async (idReserva) => {
-    if (window.confirm(`¿Seguro que deseas eliminar la reserva #${idReserva}?`)) {
+    if (
+      window.confirm(`¿Seguro que deseas eliminar la reserva #${idReserva}?`)
+    ) {
       try {
         await eliminarReserva(idReserva);
         setMensaje(`Reserva #${idReserva} eliminada `);
@@ -108,7 +123,10 @@ function Reservas() {
   return (
     <Box sx={{ padding: 4 }}>
       <Paper sx={{ padding: 3, marginBottom: 4 }} elevation={3}>
-        <Typography variant="h5" gutterBottom> Crear Nueva Reserva</Typography>
+        <Typography variant="h5" gutterBottom>
+          {" "}
+          Crear Nueva Reserva
+        </Typography>
 
         <form onSubmit={handleSubmit}>
           <TextField
@@ -154,7 +172,8 @@ function Reservas() {
             />
           </LocalizationProvider>
 
-          <br /><br />
+          <br />
+          <br />
 
           <label>
             ¿Día Especial?
@@ -163,25 +182,24 @@ function Reservas() {
               name="diaEspecial"
               checked={formData.diaEspecial}
               onChange={handleChange}
-              style={{ marginLeft: '10px' }}
+              style={{ marginLeft: "10px" }}
             />
           </label>
 
-          <br /><br />
+          <br />
+          <br />
 
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-          >
+          <Button type="submit" variant="contained" color="primary" fullWidth>
             Crear Reserva
           </Button>
         </form>
       </Paper>
 
       <Paper sx={{ padding: 3 }} elevation={3}>
-        <Typography variant="h5" gutterBottom> Listado de Reservas</Typography>
+        <Typography variant="h5" gutterBottom>
+          {" "}
+          Listado de Reservas
+        </Typography>
 
         <ReservasTable
           reservas={reservas}
@@ -190,14 +208,30 @@ function Reservas() {
         />
       </Paper>
 
-      <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleCloseSnackbar}>
-        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: "100%" }}>
+      <Snackbar
+        open={openSuccess}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
           {mensaje}
         </Alert>
       </Snackbar>
 
-      <Snackbar open={openError} autoHideDuration={3000} onClose={handleCloseSnackbar}>
-        <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: "100%" }}>
+      <Snackbar
+        open={openError}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
           {mensaje}
         </Alert>
       </Snackbar>
